@@ -17,4 +17,8 @@ public class AlbumRepository {
     public List<Album> getAllAlbums() {
         return albumMapper.selectAllAlbums();
     }
+
+    public void insertAlbum(Album album) {
+        albumMapper.insertAlbum(album);
+    }
 }
