@@ -21,4 +21,12 @@ public class AlbumRepository {
     public void insertAlbum(Album album) {
         albumMapper.insertAlbum(album);
     }
+
+    public Album getAlbumById(long albumId) {
+        return albumMapper.selectAlbumById(albumId);
+    }
+
+    public void deleteAlbumById(long albumId) {
+        albumMapper.deleteAlbumById(albumId);
+    }
 }

@@ -11,14 +11,22 @@
         <th>タイトル</th>
         <th>アーティスト</th>
         <th>リリース日</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
       <tr th:each="album : ${albums}">
         <td th:text="${album.albumId}"></td>
-        <td th:text="${album.title}"></td>
+        <td><a th:text="${album.title}" th:href="@{/albums/{albumId}(albumId=${album.albumId})}"></a></td>
         <td th:text="${album.artist}"></td>
         <td th:text="${album.releaseDate}"></td>
+        <td>
+          <div class="d-flex">
+            <form th:action="@{/albums/{albumId}/delete(albumId=${album.albumId})}" method="post">
+              <button type="submit" class="btn btn-danger btn-sm mx-2">削除</button>
+            </form>
+          </div>
+        </td>
       </tr>
     </tbody>
   </table>

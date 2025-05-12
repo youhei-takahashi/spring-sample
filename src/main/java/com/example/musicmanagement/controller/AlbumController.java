@@ -6,6 +6,7 @@ import com.example.musicmanagement.service.AlbumService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -39,6 +40,20 @@ public class AlbumController {
                               Model model) {
         albumService.createAlbum(albumForm);
 
+        return "redirect:/albums";
+    }
+
+    @GetMapping("/{albumId}")
+    public String albumDetail(@PathVariable long albumId,
+                              Model model) {
+        Album album = albumService.getAlbumById(albumId);
+        model.addAttribute("album", album);
+        return "album/album-detail";
+    }
+
+    @PostMapping("/{albumId}/delete")
+    public String deleteAlbum(@PathVariable long albumId) {
+        albumService.deleteAlbumById(albumId);
         return "redirect:/albums";
     }
 }

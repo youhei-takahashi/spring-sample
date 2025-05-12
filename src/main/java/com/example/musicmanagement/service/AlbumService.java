@@ -27,4 +27,12 @@ public class AlbumService {
         albumRepository.insertAlbum(album);
         System.out.println("hello");
     }
+
+    public Album getAlbumById(long albumId) {
+        return albumRepository.getAlbumById(albumId);
+    }
+
+    public void deleteAlbumById(long albumId) {
+        albumRepository.deleteAlbumById(albumId);
+    }
 }

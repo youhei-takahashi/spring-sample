@@ -12,5 +12,5 @@ CREATE TABLE musics (
     duration TIME,
     album_id INTEGER NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (album_id) REFERENCES albums(album_id)
+    FOREIGN KEY (album_id) REFERENCES albums(album_id) on delete cascade
 );
