@@ -22,6 +22,9 @@
         <td th:text="${album.releaseDate}"></td>
         <td>
           <div class="d-flex">
+            <form th:action="@{/albums/{albumId}/edit(albumId=${album.albumId})}" method="get">
+              <button type="submit" class="btn btn-warning btn-sm mx-2">編集</button>
+            </form>
             <form th:action="@{/albums/{albumId}/delete(albumId=${album.albumId})}" method="post">
               <button type="submit" class="btn btn-danger btn-sm mx-2">削除</button>
             </form>

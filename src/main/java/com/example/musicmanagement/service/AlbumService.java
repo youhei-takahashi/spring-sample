@@ -28,11 +28,23 @@ public class AlbumService {
         System.out.println("hello");
     }
 
+    /**
+     * 引数で受け取ったアルバムIDをもとにアルバム情報を1件取得
+     * @param albumId アルバムID
+     * @return アルバムの情報
+     */
     public Album getAlbumById(long albumId) {
         return albumRepository.getAlbumById(albumId);
     }
 
     public void deleteAlbumById(long albumId) {
         albumRepository.deleteAlbumById(albumId);
+    }
+
+    public void updateAlbum(long albumId, Album album) {
+        if (albumId != album.getAlbumId()) {
+            throw new IllegalArgumentException("Album id mismatch");
+        }
+        albumRepository.updateAlbum(album);
     }
 }

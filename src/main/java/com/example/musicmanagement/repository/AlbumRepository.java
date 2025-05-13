@@ -29,4 +29,8 @@ public class AlbumRepository {
     public void deleteAlbumById(long albumId) {
         albumMapper.deleteAlbumById(albumId);
     }
+
+    public void updateAlbum(Album album) {
+        albumMapper.updateAlbum(album);
+    }
 }

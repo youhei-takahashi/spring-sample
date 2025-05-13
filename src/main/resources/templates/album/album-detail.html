@@ -26,6 +26,22 @@
             <td th:text="${#temporals.format(album.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></td>
         </tr>
     </table>
+    <h3 class="text-center">楽曲一覧</h3>
+    <table class="table table-striped table-bordered w-75 mx-auto shadow">
+        <thead class="table-light">
+            <tr>
+                <th>楽曲ID</th>
+                <th>タイトル</th>
+                <th>再生時間</th>
+            </tr>
+        </thead>
+
+        <tr th:each="music : ${musics}">
+            <td th:text="${music.musicId}"></td>
+            <td th:text="${music.title}"></td>
+            <td th:text="${#temporals.format(music.duration, 'HH:mm:ss')}"></td>
+        </tr>
+    </table>
     <a th:href="@{/albums}">一覧に戻る</a>
     <div th:replace="~{layout :: footer}"></div>
 </body>

@@ -1,8 +1,10 @@
 package com.example.musicmanagement.controller;
 
 import com.example.musicmanagement.entity.Album;
+import com.example.musicmanagement.entity.Music;
 import com.example.musicmanagement.form.AlbumForm;
 import com.example.musicmanagement.service.AlbumService;
+import com.example.musicmanagement.service.MusicService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,9 +18,11 @@ import java.util.List;
 @RequestMapping("/albums")
 public class AlbumController {
     private final AlbumService albumService;
+    private final MusicService musicService;
 
-    public AlbumController(AlbumService albumService) {
+    public AlbumController(AlbumService albumService, MusicService musicService) {
         this.albumService = albumService;
+        this.musicService = musicService;
     }
 
     @GetMapping
@@ -43,17 +47,34 @@ public class AlbumController {
         return "redirect:/albums";
     }
 
+
     @GetMapping("/{albumId}")
     public String albumDetail(@PathVariable long albumId,
                               Model model) {
         Album album = albumService.getAlbumById(albumId);
+        List<Music> musics = musicService.getMusicsByAlbumId(albumId);
         model.addAttribute("album", album);
+        model.addAttribute("musics", musics);
         return "album/album-detail";
     }
 
     @PostMapping("/{albumId}/delete")
     public String deleteAlbum(@PathVariable long albumId) {
         albumService.deleteAlbumById(albumId);
+        return "redirect:/albums";
+    }
+
+    @GetMapping("/{albumId}/edit")
+    public String editAlbum(@PathVariable long albumId, Model model) {
+        Album album = albumService.getAlbumById(albumId);
+        model.addAttribute("album", album);
+
+        return "album/album-edit";
+    }
+
+    @PostMapping("/{albumId}/edit")
+    public String updateAlbum(@PathVariable long albumId, Album album) {
+        albumService.updateAlbum(albumId, album);
         return "redirect:/albums";
     }
 }

@@ -23,4 +23,14 @@ public interface AlbumMapper {
 
     @Delete("DELETE FROM albums WHERE album_id = #{albumId}")
     void deleteAlbumById(long albumId);
+
+    @Update("""
+            UPDATE albums
+            SET
+                title = #{title},
+                artist = #{artist},
+                release_date = #{releaseDate}
+            WHERE album_id = #{albumId}
+            """)
+    void updateAlbum(Album album);
 }
