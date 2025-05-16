@@ -17,4 +17,12 @@ public class MusicRepository {
     public List<Music> getMusicsByAlbumId(long albumId) {
         return musicMapper.selectMusicsByAlbumId(albumId);
     }
+
+    public void insertMusic(Music music) {
+        musicMapper.insertMusic(music);
+    }
+
+    public void deleteMusicByMusicId(long musicId) {
+        musicMapper.deleteMusicByMusicId(musicId);
+    }
 }
