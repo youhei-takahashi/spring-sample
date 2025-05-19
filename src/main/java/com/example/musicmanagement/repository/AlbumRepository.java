@@ -2,6 +2,7 @@ package com.example.musicmanagement.repository;
 
 import com.example.musicmanagement.entity.Album;
 import com.example.musicmanagement.mapper.AlbumMapper;
+import com.example.musicmanagement.viewmodel.AlbumViewModel;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -32,5 +33,9 @@ public class AlbumRepository {
 
     public void updateAlbum(Album album) {
         albumMapper.updateAlbum(album);
+    }
+
+    public List<AlbumViewModel> getAllAlbumsWithMusicCount() {
+        return albumMapper.selectAllAlbumsWithMusicCount();
     }
 }

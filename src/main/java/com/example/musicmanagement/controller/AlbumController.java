@@ -6,6 +6,7 @@ import com.example.musicmanagement.form.AlbumForm;
 import com.example.musicmanagement.form.MusicForm;
 import com.example.musicmanagement.service.AlbumService;
 import com.example.musicmanagement.service.MusicService;
+import com.example.musicmanagement.viewmodel.AlbumViewModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +29,8 @@ public class AlbumController {
 
     @GetMapping
     public String albums(Model model) {
-        List<Album> albums = albumService.getAllAlbums();
+//        List<Album> albums = albumService.getAllAlbums();
+        List<AlbumViewModel> albums = albumService.getAllAlbumsWithMusicCount();
         model.addAttribute("albums", albums);
         return "album/album-list";
     }
@@ -100,6 +102,23 @@ public class AlbumController {
     public String deleteMusic(@PathVariable long albumId,
                               @PathVariable long musicId) {
         musicService.deleteMusic(musicId);
+        return "redirect:/albums/" + albumId;
+    }
+
+    @GetMapping("/{albumId}/musics/{musicId}/edit")
+    public String editMusic(@PathVariable long albumId,
+                            @PathVariable long musicId,
+                            Model model) {
+        Music music = musicService.getMusicByMusicId(musicId);
+        model.addAttribute("music", music);
+        return "music/music-edit";
+    }
+
+    @PostMapping("/{albumId}/musics/{musicId}/edit")
+    public String updateMusic(@PathVariable long albumId,
+                              @PathVariable long musicId,
+                              Music music) {
+        musicService.updateMusic(musicId, music);
         return "redirect:/albums/" + albumId;
     }
 }

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head(楽曲編集)}"></head>
+<body>
+<div th:replace="~{layout :: header}"></div>
+
+<h3 class="text-center">楽曲編集</h3>
+<form th:action="@{/albums/{albumId}/musics/{musicId}/edit(albumId=${music.albumId}, musicId=${music.musicId})}" th:object="${music}" method="post" class="w-50 mx-auto mt-5 p-4 border rounded shadow">
+    <div class="mb-3">
+        <label for="title" class="form-label">タイトル：</label>
+        <input type="text" id="title" name="title" class="form-control" th:field="*{title}">
+    </div>
+    <div class="mb-3">
+        <label for="duration" class="form-label">再生時間：</label>
+        <input type="time" id="duration" name="duration" class="form-control" th:field="*{duration}" step="1">
+    </div>
+    <div>
+        <input type="hidden" name="albumId" th:field="*{albumId}">
+    </div>
+    <button type="submit" class="btn btn-primary w-100">変更</button>
+    <a th:href="@{/albums/{albumId}(albumId=*{albumId})}" class="btn btn-secondary mt-3 w-100">アルバムに戻る</a>
+</form>
+
+<div th:replace="~{layout :: footer}"></div>
+</body>
+</html>
