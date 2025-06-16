@@ -8,6 +8,9 @@
         <div th:if="${param.error}" class="alert alert-danger">
             ユーザ名、またはパスワードが違います
         </div>
+        <div th:if="${param.register}" class="alert alert-info">
+            登録に成功しました
+        </div>
     </div>
     <form th:action="@{/login}" method="post" class="w-50 mx-auto mt-5 p-4 border rounded shadow">
         <div class="mb-3">
