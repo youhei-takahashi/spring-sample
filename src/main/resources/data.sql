@@ -10,3 +10,4 @@ VALUES ('Sunset', '00:03:45', 1),
 
 INSERT INTO users (username, password) VALUES ('sample', '$2a$08$eFa4lGvL.3dvik29YiHtg.NZTZBSw2i9hhADW5L0jrWyacTri66RO');
 
+INSERT INTO favorites (user_id, music_id) VALUES (1, 1);

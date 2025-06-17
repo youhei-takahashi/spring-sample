@@ -21,3 +21,12 @@ CREATE TABLE users (
     password VARCHAR(60) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE favorites (
+    user_id INTEGER NOT NULL,
+    music_id INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (user_id, music_id),
+    FOREIGN KEY (music_id) REFERENCES musics(music_id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+)

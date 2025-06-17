@@ -2,6 +2,7 @@ package com.example.musicmanagement.repository;
 
 import com.example.musicmanagement.entity.Music;
 import com.example.musicmanagement.mapper.MusicMapper;
+import com.example.musicmanagement.viewmodel.MusicViewModel;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -33,4 +34,9 @@ public class MusicRepository {
     public Music selectMusicByMusicId(long musicId) {
         return musicMapper.selectMusicByMusicId(musicId);
     }
+
+    public List<MusicViewModel> selectMusicsWithFavorite(long albumId, long userId) {
+        return musicMapper.selectMusicsWithFavorite(albumId, userId);
+    }
+
 }
