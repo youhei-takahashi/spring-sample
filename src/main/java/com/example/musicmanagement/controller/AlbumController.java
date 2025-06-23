@@ -2,6 +2,7 @@ package com.example.musicmanagement.controller;
 
 import com.example.musicmanagement.entity.Album;
 import com.example.musicmanagement.entity.Music;
+import com.example.musicmanagement.exception.AlbumNotFoundException;
 import com.example.musicmanagement.form.AlbumForm;
 import com.example.musicmanagement.form.MusicForm;
 import com.example.musicmanagement.security.CustomUserDetails;
@@ -99,7 +100,7 @@ public class AlbumController {
     @PostMapping("/{albumId}/musics/new")
     public String createMusic(@PathVariable long albumId,
                               MusicForm musicForm) {
-        musicService.createMusic(musicForm);
+            musicService.createMusic(musicForm);
         return "redirect:/albums/" + albumId;
     }
 

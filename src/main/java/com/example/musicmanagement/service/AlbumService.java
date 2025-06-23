@@ -1,6 +1,7 @@
 package com.example.musicmanagement.service;
 
 import com.example.musicmanagement.entity.Album;
+import com.example.musicmanagement.exception.AlbumNotFoundException;
 import com.example.musicmanagement.form.AlbumForm;
 import com.example.musicmanagement.repository.AlbumRepository;
 import com.example.musicmanagement.viewmodel.AlbumViewModel;
@@ -43,6 +44,11 @@ public class AlbumService {
     }
 
     public void updateAlbum(long albumId, Album album) {
+        Album existingAlbum = albumRepository.getAlbumById(albumId);
+        if (existingAlbum == null) {
+            throw new AlbumNotFoundException("Album not found");
+        }
+
         if (albumId != album.getAlbumId()) {
             throw new IllegalArgumentException("Album id mismatch");
         }

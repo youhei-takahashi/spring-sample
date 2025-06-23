@@ -3,6 +3,9 @@
 <head th:replace="~{layout :: head(アルバム詳細)}"></head>
 <body>
     <div th:replace="~{layout :: header}"></div>
+    <div class="w-50 mx-auto mt-4">
+        <div th:if="${message}" th:text="${message}" class="alert alert-info"></div>
+    </div>
     <h3 class="text-center">アルバム詳細</h3>
     <table class="table table-bordered w-50 mx-auto shadow">
         <tr>
@@ -50,6 +53,16 @@
                     </form>
                     <form th:action="@{/albums/{albumId}/musics/{musicId}/delete(albumId=${album.albumId}, musicId=${music.musicId})}" method="post">
                         <button type="submit" class="btn btn-danger btn-sm mx-2">削除</button>
+                    </form>
+                    <form th:if="${music.isFavorite}" th:action="@{/favorites/delete}" method="post">
+                        <input type="hidden" name="musicId" th:value="${music.musicId}">
+                        <input type="hidden" name="albumId" th:value="${album.albumId}">
+                        <button type="submit" class="btn btn-danger btn-sm mx-2">お気に入り解除</button>
+                    </form>
+                    <form th:unless="${music.isFavorite}" th:action="@{/favorites}" method="post">
+                        <input type="hidden" name="musicId" th:value="${music.musicId}">
+                        <input type="hidden" name="albumId" th:value="${album.albumId}">
+                        <button type="submit" class="btn btn-primary btn-sm mx-2">お気に入り</button>
                     </form>
                 </div>
             </td>
