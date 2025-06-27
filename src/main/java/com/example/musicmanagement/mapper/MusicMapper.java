@@ -19,13 +19,7 @@ public interface MusicMapper {
     @Delete("DELETE FROM musics WHERE music_id = #{musicId}")
     void deleteMusicByMusicId(long musicId);
 
-    @Update("""
-            UPDATE musics 
-            SET
-                title = #{title}, 
-                duration = #{duration}
-            WHERE music_id = #{musicId}
-            """)
+    @Update("UPDATE musics SET title = #{title}, duration = #{duration} WHERE music_id = #{musicId}")
     void updateMusic(Music music);
 
     @Select("SELECT * FROM musics WHERE music_id = #{musicId}")

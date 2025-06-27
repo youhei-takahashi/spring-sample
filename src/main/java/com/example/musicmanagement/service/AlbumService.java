@@ -6,6 +6,7 @@ import com.example.musicmanagement.form.AlbumForm;
 import com.example.musicmanagement.repository.AlbumRepository;
 import com.example.musicmanagement.viewmodel.AlbumViewModel;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -43,6 +44,7 @@ public class AlbumService {
         albumRepository.deleteAlbumById(albumId);
     }
 
+    @Transactional
     public void updateAlbum(long albumId, Album album) {
         Album existingAlbum = albumRepository.getAlbumById(albumId);
         if (existingAlbum == null) {
@@ -50,7 +52,7 @@ public class AlbumService {
         }
 
         if (albumId != album.getAlbumId()) {
-            throw new IllegalArgumentException("Album id mismatch");
+            throw new AlbumNotFoundException("Album not found");
         }
         albumRepository.updateAlbum(album);
     }

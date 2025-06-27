@@ -23,7 +23,7 @@ public class FavoriteController {
                               @RequestParam long albumId,
                               @AuthenticationPrincipal CustomUserDetails userDetails,
                               RedirectAttributes redirectAttributes) {
-        favoriteService.insertFavorite(userDetails.getUserId(), musicId);
+        favoriteService.insertFavorite(userDetails.getUserId(), albumId, musicId);
 
         redirectAttributes.addFlashAttribute("message", "お気に入りに追加しました");
 

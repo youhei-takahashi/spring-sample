@@ -5,6 +5,7 @@
     <div th:replace="~{layout :: header}"></div>
     <div class="w-50 mx-auto mt-4">
         <div th:if="${message}" th:text="${message}" class="alert alert-info"></div>
+        <div th:if="${error}" th:text="${error}" class="alert alert-danger"></div>
     </div>
     <h3 class="text-center">アルバム詳細</h3>
     <table class="table table-bordered w-50 mx-auto shadow">
