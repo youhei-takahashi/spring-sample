@@ -38,4 +38,9 @@ public class AlbumRepository {
     public List<AlbumViewModel> getAllAlbumsWithMusicCount() {
         return albumMapper.selectAllAlbumsWithMusicCount();
     }
+
+    public List<AlbumViewModel> selectAlbumsWithMusicCountByKeyword(String keyword) {
+        return albumMapper.selectAlbumsWithMusicCountByKeyword(keyword);
+    }
+
 }

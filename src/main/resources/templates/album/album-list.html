@@ -7,6 +7,10 @@
     <div th:if="${error}" th:text="${error}" class="alert alert-danger"></div>
   </div>
   <h3 class="text-center">アルバム一覧</h3>
+  <form th:action="@{/albums}" method="get" class="d-flex justify-content-center w-75 mx-auto mb-3">
+    <input type="text" class="form-control w-auto me-3" id="title" name="title" th:value="${title}">
+    <button type="submit" class="btn btn-primary">検索</button>
+  </form>
   <table class="table table-striped table-bordered w-75 mx-auto">
     <thead class="table-light">
       <tr>

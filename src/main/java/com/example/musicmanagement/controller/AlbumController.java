@@ -13,10 +13,7 @@ import com.example.musicmanagement.viewmodel.MusicViewModel;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,10 +29,13 @@ public class AlbumController {
     }
 
     @GetMapping
-    public String albums(Model model) {
+    public String albums(@RequestParam(defaultValue = "") String title,
+                        Model model) {
 //        List<Album> albums = albumService.getAllAlbums();
-        List<AlbumViewModel> albums = albumService.getAllAlbumsWithMusicCount();
+        List<AlbumViewModel> albums = title.isEmpty() ? albumService.getAllAlbumsWithMusicCount() :
+                                                        albumService.selectAlbumsWithMusicCountByKeyword(title);
         model.addAttribute("albums", albums);
+        model.addAttribute("title", title);
         return "album/album-list";
     }
 

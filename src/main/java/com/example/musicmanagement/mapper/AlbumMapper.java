@@ -51,4 +51,22 @@ public interface AlbumMapper {
                 albums.release_date
             """)
     List<AlbumViewModel> selectAllAlbumsWithMusicCount();
+
+    @Select("""
+            SELECT 
+                albums.album_id,
+                albums.title,
+                albums.artist,
+                albums.release_date,
+                COUNT(musics.music_id) AS music_count
+            FROM albums
+            LEFT OUTER JOIN musics ON albums.album_id = musics.album_id
+            WHERE albums.title ILIKE CONCAT('%', #{keyword}, '%')
+            GROUP BY 
+                albums.album_id,
+                albums.title,
+                albums.artist,
+                albums.release_date
+            """)
+    List<AlbumViewModel> selectAlbumsWithMusicCountByKeyword(String keyword);
 }

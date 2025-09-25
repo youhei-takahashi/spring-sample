@@ -60,4 +60,9 @@ public class AlbumService {
     public List<AlbumViewModel> getAllAlbumsWithMusicCount() {
         return albumRepository.getAllAlbumsWithMusicCount();
     }
+
+    public List<AlbumViewModel> selectAlbumsWithMusicCountByKeyword(String keyword) {
+        return albumRepository.selectAlbumsWithMusicCountByKeyword(keyword);
+    }
+
 }
